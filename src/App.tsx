@@ -32,9 +32,9 @@ function App() {
 
         
     <Authenticator>
-      {({ signOut }) => (
+      {({ signOut,user }) => (
             <main>
-              <h1>Todo List</h1>
+               <h1>{user?.signInDetails?.loginId}'s todos</h1>
               <button onClick={createTodo}>+ New Todo</button>
               <div className="todo-list">
                 <div className="todo-header">
