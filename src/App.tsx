@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 
+
+import { Authenticator } from '@aws-amplify/ui-react'
+import '@aws-amplify/ui-react/styles.css'
+
 const client = generateClient<Schema>();
 
 function App() {
@@ -14,26 +18,44 @@ function App() {
   }, []);
 
   function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
+    const content = window.prompt("Enter Todo content");
+    if (content) {
+      client.models.Todo.create({ content });
+    }
+  }
+
+  function deleteTodo(id: string) {
+    client.models.Todo.delete({ id });
   }
 
   return (
-    <main>
-      <h1>My todos</h1>
-      <button onClick={createTodo}>+ new</button>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
-        ))}
-      </ul>
-      <div>
-        🥳 App successfully hosted. Try creating a new todo.
-        <br />
-        <a href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates">
-          Review next step of this tutorial.
-        </a>
-      </div>
-    </main>
+
+        
+    <Authenticator>
+      {({ signOut }) => (
+            <main>
+              <h1>Todo List</h1>
+              <button onClick={createTodo}>+ New Todo</button>
+              <div className="todo-list">
+                <div className="todo-header">
+                  <span>Reg. No.</span>
+                  <span>Content</span>
+                  <span>Actions</span>
+                </div>
+                {todos.map((todo, index) => (
+                  <div className="todo-item" key={todo.id}>
+                    <span>{index + 1}</span>
+                    <span>{todo.content}</span>
+                    <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+                  </div>
+                ))}
+              </div>
+
+              <button onClick={signOut}>Sign out</button>
+            </main>
+        
+      )}
+      </Authenticator>
   );
 }
 

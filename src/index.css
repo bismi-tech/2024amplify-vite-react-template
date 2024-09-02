@@ -63,3 +63,90 @@ a {
   font-weight: 800;
   text-decoration: none;
 }
+
+
+
+
+
+
+
+
+
+
+
+main {
+  padding: 20px;
+  font-family: 'Courier New', Courier, monospace; /* Using a monospaced font for a book-like feel */
+  max-width: 400px; /* Limiting the width to give a more paper-like appearance */
+  margin: auto; /* Center the content */
+  background-color: #fff; /* White background to mimic paper */
+  border: 1px solid #ddd; /* Light border around the main content */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding a slight shadow for a raised paper effect */
+}
+
+h1 {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 5px 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.todo-list {
+  border-top: 2px solid black; /* Darker top border to mimic the edge of a form */
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.todo-header,
+.todo-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid black; /* Solid line to separate rows */
+  height: 40px; /* Fixed height to give equal spacing like on a form */
+}
+
+.todo-header {
+  background-color: #f5f5f5; /* Light background for the header row */
+  font-weight: bold;
+}
+
+.todo-header span,
+.todo-item span {
+  flex: 1;
+  text-align: center;
+  border-right: 1px solid black; /* Vertical line between columns */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todo-header span:last-child,
+.todo-item span:last-child {
+  border-right: none; /* Removing the last border on the right */
+}
+
+.todo-item {
+  background-color: #fff; /* Ensure the background is white to mimic paper */
+}
+
+.todo-item button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  flex: 0 0 60px; /* Fixed width for button column */
+}
+
+.todo-item button:hover {
+  background-color: #d32f2f;
+}
